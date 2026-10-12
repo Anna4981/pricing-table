@@ -1,0 +1,196 @@
+/* ---------- Reset & variables ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --navy: #1b2a6b;
+  --blue: #3b5bdb;
+  --blue-dark: #2c46b0;
+  --orange: #f08c00;
+  --bg: #f4f6fb;
+  --card-bg: #ffffff;
+  --text: #4a5170;
+  --border: #e1e5f0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ---------- Layout ---------- */
+.pricing {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.pricing__header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.pricing__header h1 {
+  color: var(--navy);
+  font-size: 2.4rem;
+  margin-bottom: 8px;
+}
+
+/* Flexbox: cards sit in a row, equal heights, centred */
+.plans {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+}
+
+/* ---------- Card ---------- */
+.card {
+  position: relative;
+  flex: 1;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(27, 42, 107, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(27, 42, 107, 0.18);
+}
+
+.card__name {
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.card__price {
+  color: var(--navy);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.currency {
+  font-size: 1.4rem;
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+.period {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.card__features {
+  list-style: none;
+  margin-bottom: 32px;
+  flex-grow: 1; /* pushes the button to the bottom of every card */
+}
+
+.card__features li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.card__features li::before {
+  content: "✓";
+  color: var(--blue);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* ---------- Highlighted "popular" plan ---------- */
+.card--popular {
+  border-color: var(--blue);
+  box-shadow: 0 10px 30px rgba(59, 91, 219, 0.28);
+  transform: scale(1.05);
+}
+
+.card--popular:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: block;
+  padding: 14px 20px;
+  border: 2px solid var(--blue);
+  border-radius: 10px;
+  color: var(--blue);
+  background: transparent;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: scale(1.03);
+}
+
+.btn--primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+}
+
+/* ---------- Responsive: stack on small screens ---------- */
+@media (max-width: 800px) {
+  .plans {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* drop the scale so the featured card doesn't overflow */
+  .card--popular,
+  .card--popular:hover {
+    transform: none;
+  }
+
+  .card--popular:hover {
+    transform: translateY(-8px);
+  }
+
+  .pricing__header h1 {
+    font-size: 1.9rem;
+  }
+}
